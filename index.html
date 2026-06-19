@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Demo de portfólio (fictício). noindex para não competir com o site do cliente no Google. -->
+<meta name="robots" content="noindex">
+<title>Marques Odontologia — Clínica Odontológica</title>
+
+<!-- ===================================================================
+     COMO PERSONALIZAR ESTE SITE (resumo)
+     1. CORES:    edite as variáveis em :root logo abaixo (--teal etc.)
+     2. NOME:     procure por "Marques Odontologia" e "Dra. Helena Marques"
+     3. CONTATO:  procure por "TROQUE:" para telefone, endereço e horário
+     4. WHATSAPP: procure por "5592999999999" e troque pelo número do cliente
+     5. FOTOS:    onde houver <div class="ph ...> troque por <img src="...">
+     =================================================================== -->
+
+<!-- Favicon (dente) embutido, sem arquivo externo -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235E9CA6' d='M12 2C8 2 6.2 3.8 4.7 3.8 3.2 3.8 2 3 2 5.6c0 2.8 1 4.6 1.7 7.9C4.3 16.9 4.8 21 6.1 21c1.1 0 1.2-2.7 1.7-4.6.3-1.1.7-1.9 2.2-1.9s1.9.8 2.2 1.9c.5 1.9.6 4.6 1.7 4.6 1.3 0 1.8-4.1 2.4-7.5.7-3.3 1.7-5.1 1.7-7.9C21.9 3 20.7 3.8 19.2 3.8 17.8 3.8 16 2 12 2z'/%3E%3C/svg%3E">
+
+<style>
+/* ===================================================================
+   1) VARIÁVEIS DE COR  —  TROQUE AQUI para mudar a identidade visual
+   =================================================================== */
+:root{
+  --teal:        #5E9CA6;   /* cor principal (barra topo, botões, detalhes) */
+  --teal-escuro: #4A7E87;   /* hover dos botões / textos sobre claro        */
+  --teal-fundo:  #EAF3F4;   /* fundos suaves / faixa de destaque            */
+  --titulo:      #20292D;   /* cinza quase preto dos títulos                */
+  --texto:       #5C6970;   /* cinza médio dos parágrafos                   */
+  --branco:      #FFFFFF;
+  --borda:       #E7EDEE;   /* linhas e bordas finas                        */
+  --rodape:      #243033;   /* fundo do rodapé                              */
+  --whats:       #25D366;   /* verde do botão de WhatsApp                   */
+
+  --sombra:      0 14px 40px rgba(32,41,45,.08);
+  --sombra-sm:   0 6px 18px rgba(32,41,45,.06);
+  --raio:        18px;      /* arredondamento de cards/fotos                */
+  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===================================================================
+   2) BASE
+   =================================================================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:120px; }
+body{
+  font-family:var(--fonte);
+  color:var(--texto);
+  background:var(--branco);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ color:var(--titulo); line-height:1.18; font-weight:800; letter-spacing:-.02em; }
+.container{ width:100%; max-width:1180px; margin:0 auto; padding:0 22px; }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+/* Botões pílula */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--teal); color:#fff; font-weight:700;
+  padding:.85rem 1.6rem; border-radius:999px; border:none; cursor:pointer;
+  font-size:1rem; font-family:inherit; transition:background .2s, transform .2s, box-shadow .2s;
+  box-shadow:0 8px 20px rgba(94,156,166,.28);
+}
+.btn:hover{ background:var(--teal-escuro); transform:translateY(-2px); box-shadow:0 12px 26px rgba(94,156,166,.36); }
+.btn--linha{ background:transparent; color:var(--teal); box-shadow:none; border:2px solid var(--teal); }
+.btn--linha:hover{ background:var(--teal); color:#fff; }
+
+/* Placeholders de imagem (troque por <img>) */
+.ph{
+  background:
+    repeating-linear-gradient(45deg, #eef3f4 0 14px, #e6eeef 14px 28px);
+  color:#9fb3b6; display:flex; align-items:center; justify-content:center;
+  text-align:center; font-size:.78rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; border-radius:var(--raio);
+}
+.ph small{ max-width:80%; }
+
+/* ===================================================================
+   3) BARRA DE CONTATO (TOPO)
+   =================================================================== */
+.topbar{ background:var(--teal); color:#fff; font-size:.9rem; }
+.topbar .container{ display:flex; align-items:center; gap:26px; min-height:46px; flex-wrap:wrap; }
+.topbar a{ display:inline-flex; align-items:center; gap:.45rem; opacity:.96; }
+.topbar a:hover{ opacity:1; text-decoration:underline; }
+.topbar .tb-social{ margin-left:auto; display:flex; gap:14px; }
+.topbar .tb-social a{ width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.16);
+  display:grid; place-items:center; }
+.topbar .tb-social a:hover{ background:rgba(255,255,255,.30); text-decoration:none; }
+.topbar svg{ width:16px; height:16px; fill:currentColor; }
+.topbar .tb-social svg{ width:15px; height:15px; }
+
+/* ===================================================================
+   4) MENU FIXO
+   =================================================================== */
+.nav{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--borda);
+  transition:box-shadow .25s; }
+.nav.rolou{ box-shadow:0 6px 22px rgba(32,41,45,.07); }
+.nav .container{ display:flex; align-items:center; min-height:78px; gap:24px; }
+
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; color:var(--titulo);
+  font-size:1.18rem; letter-spacing:-.02em; }
+.logo .marca-ico{ width:42px; height:42px; border-radius:50%; background:var(--teal-fundo);
+  display:grid; place-items:center; flex:none; }
+.logo .marca-ico svg{ width:24px; height:24px; fill:var(--teal); }
+.logo b{ color:var(--teal); font-weight:800; }
+.logo span{ display:block; font-size:.7rem; font-weight:600; color:var(--texto);
+  letter-spacing:.18em; text-transform:uppercase; margin-top:-2px; }
+
+.menu{ display:flex; align-items:center; gap:6px; margin-left:auto; list-style:none; }
+.menu > li{ position:relative; }
+.menu > li > a{ display:block; padding:.6rem .9rem; font-weight:600; color:var(--titulo);
+  border-radius:10px; font-size:.97rem; transition:color .2s, background .2s; }
+.menu > li > a:hover{ color:var(--teal); background:var(--teal-fundo); }
+.menu .tem-sub > a::after{ content:"▾"; margin-left:.35rem; font-size:.8em; color:var(--teal); }
+
+/* Submenu Tratamentos */
+.submenu{ list-style:none; position:absolute; top:calc(100% + 8px); left:0; min-width:230px;
+  background:#fff; border:1px solid var(--borda); border-radius:14px; box-shadow:var(--sombra);
+  padding:8px; opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:.2s; }
+.tem-sub:hover .submenu, .tem-sub.aberto .submenu{ opacity:1; visibility:visible; transform:translateY(0); }
+.submenu a{ display:block; padding:.6rem .8rem; border-radius:9px; font-size:.93rem; font-weight:600;
+  color:var(--titulo); }
+.submenu a:hover{ background:var(--teal-fundo); color:var(--teal); }
+
+.nav .btn{ padding:.7rem 1.3rem; font-size:.95rem; flex:none; }
+.nav-cta{ margin-left:8px; }
+.nav-cta-mob{ display:none; }
+
+/* Hambúrguer */
+.burger{ display:none; margin-left:auto; width:46px; height:46px; border:1px solid var(--borda);
+  border-radius:12px; background:#fff; cursor:pointer; position:relative; }
+.burger span, .burger span::before, .burger span::after{ content:""; position:absolute; left:50%;
+  top:50%; width:20px; height:2px; background:var(--titulo); border-radius:2px; transform:translate(-50%,-50%);
+  transition:.25s; }
+.burger span::before{ top:-7px; } .burger span::after{ top:7px; }
+.burger.x span{ background:transparent; }
+.burger.x span::before{ top:0; transform:translate(-50%,-50%) rotate(45deg); }
+.burger.x span::after{ top:0; transform:translate(-50%,-50%) rotate(-45deg); }
+
+/* ===================================================================
+   5) HERO
+   =================================================================== */
+.hero{ position:relative; overflow:hidden; background:#fff; }
+.hero .container{ display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center;
+  padding-top:70px; padding-bottom:80px; position:relative; z-index:2; }
+.hero-padrao{ position:absolute; inset:0; z-index:1; opacity:.5; pointer-events:none; }
+.hero-padrao svg{ width:100%; height:100%; }
+
+.hero h1{ font-size:clamp(2.1rem, 4.4vw, 3.25rem); }
+.hero .sub{ font-size:1.12rem; margin:1.1rem 0 1.6rem; max-width:34ch; }
+.hero .tag{ display:inline-block; background:var(--teal-fundo); color:var(--teal-escuro);
+  font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase;
+  padding:.4rem .9rem; border-radius:999px; margin-bottom:1.2rem; }
+
+.lista-check{ list-style:none; display:grid; gap:.7rem; margin:0 0 2rem; }
+.lista-check li{ display:flex; align-items:center; gap:.7rem; font-weight:600; color:var(--titulo); }
+.lista-check svg{ width:24px; height:24px; flex:none; fill:var(--teal); }
+
+/* Foto da dentista: círculo sobre círculo teal */
+.hero-foto{ position:relative; display:flex; justify-content:center; }
+.hero-foto::before{ content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:50%;
+  background:var(--teal); top:-4%; right:-2%; z-index:0; }
+.hero-foto .foto-circ{ position:relative; z-index:1; width:100%; max-width:400px; aspect-ratio:1;
+  border-radius:50%; overflow:hidden; box-shadow:var(--sombra); border:8px solid #fff; }
+
+/* ===================================================================
+   6) SOBRE
+   =================================================================== */
+.sobre{ padding:84px 0; }
+.sobre .container{ display:grid; grid-template-columns:1fr 1.1fr; gap:54px; align-items:center; }
+.sobre-foto{ aspect-ratio:4/3.4; box-shadow:var(--sombra); }
+.sobre h2{ font-size:clamp(1.7rem, 3vw, 2.35rem); margin-bottom:1.1rem; }
+.sobre .nome-pequeno{ color:var(--teal); font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  font-size:.85rem; margin-bottom:.6rem; }
+.sobre p{ margin-bottom:1.1rem; }
+.sobre p b{ color:var(--titulo); }
+.sobre .btn{ margin-top:.6rem; }
+
+/* Faixa de destaque */
+.faixa{ background:var(--teal-fundo); text-align:center; padding:46px 0; }
+.faixa h3{ font-size:clamp(1.3rem, 2.6vw, 1.9rem); max-width:24ch; margin:0 auto; }
+.faixa h3 b{ color:var(--teal-escuro); }
+
+/* ===================================================================
+   7) TRATAMENTOS
+   =================================================================== */
+.trat{ padding:84px 0; }
+.trat .cab{ text-align:center; max-width:620px; margin:0 auto 48px; }
+.trat .cab .nome-pequeno{ color:var(--teal); font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; font-size:.85rem; margin-bottom:.6rem; }
+.trat h2{ font-size:clamp(1.7rem, 3vw, 2.35rem); }
+.trat .cab p{ margin-top:.7rem; }
+
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.card{ background:#fff; border:1px solid var(--borda); border-radius:var(--raio); overflow:hidden;
+  box-shadow:var(--sombra-sm); transition:transform .25s, box-shadow .25s; }
+.card:hover{ transform:translateY(-6px); box-shadow:var(--sombra); }
+.card .ph{ aspect-ratio:16/11; border-radius:0; }
+.card .card-corpo{ padding:22px 24px 26px; }
+.card h3{ font-size:1.18rem; margin-bottom:.4rem; }
+.card p{ font-size:.95rem; }
+.card .mais{ display:inline-flex; align-items:center; gap:.4rem; color:var(--teal);
+  font-weight:700; font-size:.92rem; margin-top:.9rem; }
+.card .mais svg{ width:16px; height:16px; fill:currentColor; transition:transform .2s; }
+.card:hover .mais svg{ transform:translateX(4px); }
+
+/* ===================================================================
+   8) RODAPÉ
+   =================================================================== */
+.rodape{ background:var(--rodape); color:#c4d0d2; padding:64px 0 0; font-size:.95rem; }
+.rodape .grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+.rodape h4{ color:#fff; font-size:1rem; margin-bottom:1.1rem; letter-spacing:.02em; }
+.rodape .logo{ color:#fff; margin-bottom:1rem; }
+.rodape .logo .marca-ico{ background:rgba(255,255,255,.10); }
+.rodape .logo .marca-ico svg{ fill:#fff; }
+.rodape .logo b{ color:#fff; }
+.rodape .logo span{ color:#9fb0b3; }
+.rodape ul{ list-style:none; display:grid; gap:.6rem; }
+.rodape a:hover{ color:#fff; }
+.rodape .info{ display:flex; align-items:flex-start; gap:.6rem; }
+.rodape .info svg{ width:18px; height:18px; fill:var(--teal); flex:none; margin-top:3px; }
+.rod-social{ display:flex; gap:12px; margin-top:1rem; }
+.rod-social a{ width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.10);
+  display:grid; place-items:center; }
+.rod-social a:hover{ background:var(--teal); }
+.rod-social svg{ width:17px; height:17px; fill:#fff; }
+.rod-base{ border-top:1px solid rgba(255,255,255,.10); margin-top:52px; padding:22px 0;
+  text-align:center; font-size:.85rem; color:#8ea0a3; }
+
+/* ===================================================================
+   9) BOTÃO FLUTUANTE WHATSAPP
+   =================================================================== */
+.whats-float{ position:fixed; right:22px; bottom:22px; z-index:80; width:60px; height:60px;
+  border-radius:50%; background:var(--whats); display:grid; place-items:center;
+  box-shadow:0 10px 26px rgba(37,211,102,.45); transition:transform .2s; }
+.whats-float:hover{ transform:scale(1.08); }
+.whats-float svg{ width:32px; height:32px; fill:#fff; }
+.whats-float::after{ content:""; position:absolute; inset:0; border-radius:50%;
+  border:2px solid var(--whats); animation:pulso 2.2s ease-out infinite; }
+@keyframes pulso{ 0%{ transform:scale(1); opacity:.7 } 100%{ transform:scale(1.6); opacity:0 } }
+
+/* Animação de entrada */
+[data-reveal]{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+[data-reveal].vis{ opacity:1; transform:none; }
+
+/* ===================================================================
+   10) RESPONSIVO
+   =================================================================== */
+@media (max-width:960px){
+  .nav .container{ min-height:70px; }
+  .menu, .nav-cta{ display:none; }
+  .burger{ display:block; }
+
+  /* painel mobile */
+  .menu.abre{ display:flex; flex-direction:column; align-items:stretch; gap:2px;
+    position:absolute; top:100%; left:0; right:0; background:#fff; padding:12px 18px 20px;
+    border-bottom:1px solid var(--borda); box-shadow:var(--sombra); margin-left:0; }
+  .menu.abre > li > a{ padding:.85rem .4rem; border-bottom:1px solid var(--borda); border-radius:0; }
+  .menu.abre .submenu{ position:static; opacity:1; visibility:visible; transform:none; box-shadow:none;
+    border:none; padding:0 0 .4rem 14px; min-width:auto; display:none; }
+  .menu.abre .tem-sub.aberto .submenu{ display:block; }
+  .menu.abre .nav-cta-mob{ display:block; margin-top:14px; }
+  .menu.abre .nav-cta-mob a{ justify-content:center; }
+
+  .hero .container{ grid-template-columns:1fr; gap:40px; padding-top:46px; padding-bottom:54px; }
+  .hero-foto{ order:2; }
+  .hero-foto .foto-circ{ max-width:320px; }
+  .hero .sub{ max-width:46ch; }
+
+  .sobre .container{ grid-template-columns:1fr; gap:32px; }
+  .sobre-foto{ order:-1; }
+
+  .cards{ grid-template-columns:1fr 1fr; }
+
+  .rodape .grid{ grid-template-columns:1fr 1fr; gap:34px; }
+}
+
+@media (max-width:560px){
+  .topbar{ font-size:.82rem; }
+  .topbar .tb-end{ display:none; }            /* esconde endereço na barra do topo */
+  .topbar .container{ gap:14px; min-height:42px; }
+  .cards{ grid-template-columns:1fr; }
+  .rodape .grid{ grid-template-columns:1fr; }
+  .hero .container{ padding-top:34px; }
+  .sobre, .trat{ padding:58px 0; }
+  .whats-float{ width:54px; height:54px; right:16px; bottom:16px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ scroll-behavior:auto; }
+  [data-reveal]{ transition:none; opacity:1; transform:none; }
+  .whats-float::after{ animation:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ BARRA DE CONTATO (TOPO) ============ -->
+<div class="topbar">
+  <div class="container">
+    <!-- TROQUE: telefone -->
+    <a href="tel:+5592999999999">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1z"/></svg>
+      (92) 99999-9999
+    </a>
+    <!-- TROQUE: endereço -->
+    <a class="tb-end" href="#contato">
+      <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      Av. Brasil, 1500 — Sala 304, Centro — Manaus/AM
+    </a>
+    <div class="tb-social">
+      <!-- TROQUE: links das redes -->
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.26 2.2.43.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .43 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.26 1.8-.43 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.43-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.26-2.2-.43-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.43-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.26-1.8.43-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.43C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.7V3.6c-.3 0-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.2V13h2.6v8z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MENU FIXO ============ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <!-- TROQUE: nome da clínica -->
+    <a href="#topo" class="logo" aria-label="Marques Odontologia — início">
+      <span class="marca-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 6.2 3.8 4.7 3.8 3.2 3.8 2 3 2 5.6c0 2.8 1 4.6 1.7 7.9C4.3 16.9 4.8 21 6.1 21c1.1 0 1.2-2.7 1.7-4.6.3-1.1.7-1.9 2.2-1.9s1.9.8 2.2 1.9c.5 1.9.6 4.6 1.7 4.6 1.3 0 1.8-4.1 2.4-7.5.7-3.3 1.7-5.1 1.7-7.9C21.9 3 20.7 3.8 19.2 3.8 17.8 3.8 16 2 12 2z"/></svg></span>
+      <span>Marques <b>Odontologia</b><span>Sorria com confiança</span></span>
+    </a>
+
+    <ul class="menu" id="menu">
+      <li><a href="#topo">Home</a></li>
+      <li><a href="#sobre">A Clínica</a></li>
+      <li class="tem-sub" id="dropTrat">
+        <a href="#tratamentos">Tratamentos</a>
+        <ul class="submenu">
+          <li><a href="#tratamentos">Clínica Geral</a></li>
+          <li><a href="#tratamentos">Ortodontia</a></li>
+          <li><a href="#tratamentos">Implantes Dentários</a></li>
+          <li><a href="#tratamentos">Estética &amp; Clareamento</a></li>
+          <li><a href="#tratamentos">Odontopediatria</a></li>
+        </ul>
+      </li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contato">Fale Conosco</a></li>
+      <li class="nav-cta-mob"><a class="btn" href="#contato">Agendamento →</a></li>
+    </ul>
+
+    <a class="btn nav-cta" href="#contato">Agendamento →</a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="topo">
+  <!-- padrão suave de ícones de dente ao fundo -->
+  <div class="hero-padrao" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dentes" width="86" height="86" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
+          <path d="M28 24c-2.4 0-3.5 1.1-4.4 1.1-.9 0-1.6-.5-1.6 1 0 1.7.6 2.8 1 4.7.4 2 .7 4.5 1.5 4.5.7 0 .8-1.6 1-2.7.2-.7.4-1.1 1.3-1.1s1.1.5 1.3 1.1c.3 1.1.4 2.7 1 2.7.8 0 1.1-2.5 1.5-4.5.4-2 1-3 1-4.7 0-1.5-.7-1-1.6-1-.8 0-2-1.1-4-1.1z" fill="#5E9CA6" opacity="0.06"/>
+          <circle cx="64" cy="64" r="3" fill="#5E9CA6" opacity="0.05"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dentes)"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-texto" data-reveal>
+      <span class="tag">Atendimento humanizado em Manaus</span>
+      <!-- TROQUE: nome da clínica -->
+      <h1>Um sorriso saudável muda a forma como você vive.</h1>
+      <p class="sub">Clínica odontológica completa, com tecnologia moderna e atendimento acolhedor para toda a família.</p>
+      <ul class="lista-check">
+        <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/></svg> Clínica geral e prevenção</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/></svg> Ortodontia (aparelhos)</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/></svg> Implantes dentários</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4z"/></svg> Estética e clareamento</li>
+      </ul>
+      <a class="btn" href="#tratamentos">Conheça nossos tratamentos</a>
+    </div>
+
+    <div class="hero-foto" data-reveal>
+      <!-- TROQUE a div abaixo por: <img class="foto-circ" src="foto-dentista.jpg" alt="..."> -->
+      <div class="foto-circ ph"><small>Foto da dentista<br>(formato quadrado)</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SOBRE ============ -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <!-- TROQUE a div abaixo por: <img class="sobre-foto" src="clinica.jpg" alt="..."> -->
+    <div class="sobre-foto ph" data-reveal><small>Foto da clínica<br>ou do atendimento</small></div>
+
+    <div data-reveal>
+      <p class="nome-pequeno">Sobre a clínica</p>
+      <!-- TROQUE: nome da dentista -->
+      <h2>Dra. Helena Marques</h2>
+      <p>A <b>Marques Odontologia</b> é uma clínica de Manaus referência em <b>atendimento humanizado</b>, com foco em prevenção, estética e reabilitação do sorriso. Unimos tecnologia moderna a um cuidado próximo, para que cada paciente se sinta seguro do início ao fim do tratamento.</p>
+      <p>Com mais de <b>10 anos de experiência</b>, a Dra. Helena e a equipe oferecem desde a consulta de rotina até procedimentos avançados, sempre com transparência, conforto e planos de tratamento sob medida.</p>
+      <a class="btn btn--linha" href="#contato">Entre em contato!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAIXA DE DESTAQUE ============ -->
+<div class="faixa">
+  <div class="container" data-reveal>
+    <h3>Referência em <b>ortodontia, implantes e estética</b> do sorriso</h3>
+  </div>
+</div>
+
+<!-- ============ TRATAMENTOS ============ -->
+<section class="trat" id="tratamentos">
+  <div class="container">
+    <div class="cab" data-reveal>
+      <p class="nome-pequeno">O que fazemos</p>
+      <h2>Tratamentos para todo tipo de sorriso</h2>
+      <p>Soluções completas em um só lugar, com avaliação inicial sem compromisso.</p>
+    </div>
+
+    <div class="cards">
+      <!-- CARD 1 — TROQUE imagem e textos -->
+      <article class="card" data-reveal>
+        <div class="ph"><small>Imagem<br>Ortodontia</small></div>
+        <div class="card-corpo">
+          <h3>Ortodontia</h3>
+          <p>Aparelhos fixos, estéticos e alinhadores para corrigir o posicionamento dos dentes em qualquer idade.</p>
+          <a class="mais" href="#contato">Saiba mais <svg viewBox="0 0 24 24"><path d="M5 12h12l-5-5 1.4-1.4L21 12l-7.6 6.4L12 17l5-5H5z"/></svg></a>
+        </div>
+      </article>
+      <!-- CARD 2 -->
+      <article class="card" data-reveal>
+        <div class="ph"><small>Imagem<br>Implantes</small></div>
+        <div class="card-corpo">
+          <h3>Implantes Dentários</h3>
+          <p>Reposição de dentes perdidos com naturalidade, devolvendo função, mastigação e autoestima.</p>
+          <a class="mais" href="#contato">Saiba mais <svg viewBox="0 0 24 24"><path d="M5 12h12l-5-5 1.4-1.4L21 12l-7.6 6.4L12 17l5-5H5z"/></svg></a>
+        </div>
+      </article>
+      <!-- CARD 3 -->
+      <article class="card" data-reveal>
+        <div class="ph"><small>Imagem<br>Clareamento</small></div>
+        <div class="card-corpo">
+          <h3>Estética &amp; Clareamento</h3>
+          <p>Clareamento, lentes e restaurações para um sorriso mais branco, alinhado e harmônico.</p>
+          <a class="mais" href="#contato">Saiba mais <svg viewBox="0 0 24 24"><path d="M5 12h12l-5-5 1.4-1.4L21 12l-7.6 6.4L12 17l5-5H5z"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape" id="contato">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="logo">
+          <span class="marca-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8 2 6.2 3.8 4.7 3.8 3.2 3.8 2 3 2 5.6c0 2.8 1 4.6 1.7 7.9C4.3 16.9 4.8 21 6.1 21c1.1 0 1.2-2.7 1.7-4.6.3-1.1.7-1.9 2.2-1.9s1.9.8 2.2 1.9c.5 1.9.6 4.6 1.7 4.6 1.3 0 1.8-4.1 2.4-7.5.7-3.3 1.7-5.1 1.7-7.9C21.9 3 20.7 3.8 19.2 3.8 17.8 3.8 16 2 12 2z"/></svg></span>
+          <span>Marques <b>Odontologia</b><span>Sorria com confiança</span></span>
+        </div>
+        <p style="max-width:30ch">Cuidando do seu sorriso com tecnologia e atendimento humanizado em Manaus/AM.</p>
+        <div class="rod-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.26 2.2.43.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .43 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.26 1.8-.43 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.43-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.26-2.2-.43-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.43-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.26-1.8.43-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.43C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.7V3.6c-.3 0-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.2V13h2.6v8z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Tratamentos</h4>
+        <ul>
+          <li><a href="#tratamentos">Clínica Geral</a></li>
+          <li><a href="#tratamentos">Ortodontia</a></li>
+          <li><a href="#tratamentos">Implantes</a></li>
+          <li><a href="#tratamentos">Clareamento</a></li>
+          <li><a href="#tratamentos">Odontopediatria</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <!-- TROQUE: telefone, endereço e horário -->
+          <li class="info"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1z"/></svg> (92) 99999-9999</li>
+          <li class="info"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg> Av. Brasil, 1500 — Sala 304<br>Centro, Manaus/AM</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Horário</h4>
+        <ul>
+          <li>Seg a Sex — 8h às 19h</li>
+          <li>Sábado — 8h às 12h</li>
+          <li>Domingo — Fechado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rod-base">
+      © 2026 Marques Odontologia — Demonstração. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTÃO FLUTUANTE WHATSAPP ============ -->
+<!-- TROQUE: 5592999999999 pelo número do cliente (formato 55 + DDD + número) -->
+<a class="whats-float" href="https://wa.me/5592999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M.06 24l1.68-6.13A11.82 11.82 0 0 1 .16 11.9C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.59-3.8c1.7.99 3 .98 3.41.98 5.45 0 9.89-4.43 9.89-9.88a9.84 9.84 0 0 0-2.9-7A9.84 9.84 0 0 0 12.07 2C6.62 2 2.18 6.43 2.18 11.9a9.82 9.82 0 0 0 1.5 5.24l-.99 3.62 3.96-.56zm9.61-5.65c-.07-.12-.27-.2-.57-.34-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.28.18-1.4z"/></svg>
+</a>
+
+<script>
+/* ===== Menu hambúrguer ===== */
+var burger = document.getElementById('burger');
+var menu   = document.getElementById('menu');
+burger.addEventListener('click', function(){
+  var aberto = menu.classList.toggle('abre');
+  burger.classList.toggle('x', aberto);
+  burger.setAttribute('aria-expanded', aberto);
+});
+
+/* ===== Submenu "Tratamentos" no mobile (toque) ===== */
+var dropTrat = document.getElementById('dropTrat');
+dropTrat.querySelector('a').addEventListener('click', function(e){
+  if (window.matchMedia('(max-width:960px)').matches){
+    e.preventDefault();
+    dropTrat.classList.toggle('aberto');
+  }
+});
+
+/* ===== Fecha o menu mobile ao clicar num link ===== */
+menu.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    if (a.parentElement === dropTrat) return; // o "Tratamentos" só abre o submenu
+    menu.classList.remove('abre');
+    burger.classList.remove('x');
+    burger.setAttribute('aria-expanded', false);
+  });
+});
+
+/* ===== Sombra na navbar ao rolar ===== */
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('rolou', window.scrollY > 8);
+});
+
+/* ===== Animação de entrada (respeita reduced-motion) ===== */
+var reduz = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+if (reduz){
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('vis'); });
+} else {
+  var io = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('vis'); io.unobserve(en.target); }
+    });
+  }, { threshold:.12 });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+}
+</script>
+</body>
+</html>
