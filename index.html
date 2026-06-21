@@ -504,6 +504,12 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .local-horarios td:last-child{ text-align:right; color:var(--titulo); }
 .local-acoes{ display:flex; gap:.75rem; flex-wrap:wrap; }
 @media (max-width:768px){ .local-grid{ grid-template-columns:1fr; } }
+.promo{ background:var(--ouro-grad); padding:1.5rem 0; }
+.promo-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.promo-txt{ display:flex; align-items:center; gap:.75rem; color:#1A1206; }
+.promo-txt .ico{ width:28px; height:28px; }
+.promo .btn{ background:#1A1206; color:var(--ouro); }
+@media (max-width:560px){ .promo-inner{ justify-content:center; text-align:center; } }
 </style>
 </head>
 <body>
@@ -961,6 +967,17 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
         <a class="btn btn--linha" href="tel:+5592999999999"><svg class="ico"><use href="#i-relogio"/></svg> Ligar</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ PROMO ============ -->
+<section class="promo" data-reveal>
+  <div class="container promo-inner">
+    <div class="promo-txt"><svg class="ico"><use href="#i-presente"/></svg>
+      <!-- TROQUE: oferta -->
+      <span><b>1ª avaliação grátis</b> — agende agora e ganhe seu diagnóstico sem custo.</span>
+    </div>
+    <a class="btn" href="#agendamento">Agendar avaliação</a>
   </div>
 </section>
 
