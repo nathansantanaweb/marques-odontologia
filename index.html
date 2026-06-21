@@ -496,6 +496,14 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .tour-play{ width:72px; height:72px; border-radius:50%; background:var(--ouro-grad); display:grid; place-items:center; box-shadow:var(--sombra); }
 .tour-play .ico{ width:30px; height:30px; color:#1A1206; }
 .tour-legenda{ position:absolute; bottom:14px; left:16px; color:var(--titulo); font-family:var(--serif); }
+.local-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center; }
+.local-mapa{ aspect-ratio:4/3; }
+.local-end{ display:flex; align-items:center; gap:.5rem; color:var(--texto-suave); }
+.local-horarios{ width:100%; margin:1rem 0; border-collapse:collapse; }
+.local-horarios td{ padding:.5rem 0; border-bottom:1px solid var(--borda); color:var(--texto-suave); }
+.local-horarios td:last-child{ text-align:right; color:var(--titulo); }
+.local-acoes{ display:flex; gap:.75rem; flex-wrap:wrap; }
+@media (max-width:768px){ .local-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -930,6 +938,28 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
       <div class="faq-item"><button class="faq-q">Vocês têm planos de pagamento? <span class="sinal">+</span></button><div class="faq-a"><p>Sim. Trabalhamos com diferentes formas de pagamento e parcelamento que cabem no seu orçamento.</p></div></div>
       <div class="faq-item"><button class="faq-q">O atendimento é com hora marcada? <span class="sinal">+</span></button><div class="faq-a"><p>Sim. Todo atendimento é agendado para garantir exclusividade, conforto e nada de espera.</p></div></div>
       <div class="faq-item"><button class="faq-q">Como faço para agendar? <span class="sinal">+</span></button><div class="faq-a"><p>É só clicar no botão de WhatsApp do site. Respondemos rapidamente e marcamos o melhor horário para você.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCALIZAÇÃO ============ -->
+<section class="sec" id="localizacao">
+  <div class="container local-grid">
+    <div class="local-mapa ph" data-reveal><svg class="ph-ico"><use href="#i-mapa"/></svg><small>TROQUE: print do mapa</small></div>
+    <div data-reveal data-delay="1">
+      <span class="eyebrow">Onde estamos</span>
+      <h2>Fácil de chegar</h2>
+      <!-- TROQUE: endereço e horários -->
+      <p class="local-end"><svg class="ico"><use href="#i-mapa"/></svg> Av. Brasil, 1500 — Centro, Manaus/AM</p>
+      <table class="local-horarios">
+        <tr><td>Seg–Sex</td><td>08h–19h</td></tr>
+        <tr><td>Sábado</td><td>08h–13h</td></tr>
+        <tr><td>Domingo</td><td>Fechado</td></tr>
+      </table>
+      <div class="local-acoes">
+        <a class="btn" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mapa"/></svg> Como chegar</a>
+        <a class="btn btn--linha" href="tel:+5592999999999"><svg class="ico"><use href="#i-relogio"/></svg> Ligar</a>
+      </div>
     </div>
   </div>
 </section>
