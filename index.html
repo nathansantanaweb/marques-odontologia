@@ -448,26 +448,22 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 
 /* ---- ANTES & DEPOIS ---- */
 .ad-wrap{ max-width:680px; margin:0 auto; }
-.ad-comp{ --pos:50%; position:relative; width:100%; aspect-ratio:16/10; border-radius:var(--raio); overflow:hidden;
-  border:1px solid var(--borda-ouro); user-select:none; touch-action:none; box-shadow:var(--sombra); cursor:ew-resize; }
-.ad-layer{ position:absolute; inset:0; width:100%; height:100%; }
-.ad-depois{ clip-path:inset(0 0 0 var(--pos)); }
 .ad-tag{ position:absolute; top:14px; padding:.3rem .8rem; font-size:.72rem; font-weight:700; letter-spacing:.14em;
   text-transform:uppercase; border-radius:999px; background:rgba(10,17,30,.72); border:1px solid var(--borda); color:var(--titulo); z-index:4; }
 .ad-tag.antes{ left:14px; } .ad-tag.depois{ right:14px; color:#1A1206; background:var(--ouro-grad); border:none; }
-.ad-divisor{ position:absolute; top:0; bottom:0; left:var(--pos); width:2px; background:var(--ouro-grad); transform:translateX(-1px); z-index:5; pointer-events:none; }
-.ad-handle{ position:absolute; top:50%; left:var(--pos); width:48px; height:48px; margin-top:-24px; margin-left:-24px; z-index:6;
-  border-radius:50%; background:var(--ouro-grad); display:grid; place-items:center; cursor:ew-resize; box-shadow:var(--sombra-sm); }
-.ad-handle .ico{ width:24px; height:24px; color:#1A1206; }
-.ad-dica{ text-align:center; color:var(--texto-suave); font-size:.86rem; margin-top:1rem; }
-.ad-layer.ad-antes, .ad-layer.ad-depois{ background:url('assets/sorriso-2.jpg') center 40%/188% no-repeat; }
-.ad-layer.ad-antes{ filter:sepia(.5) saturate(1.5) brightness(.9) contrast(.92); }
-.ad-vinheta{ position:absolute; inset:0; z-index:3; pointer-events:none;
-  background:radial-gradient(130% 105% at 50% 44%, transparent 50%, rgba(8,13,22,.62) 100%); }
+.ad-dupla{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; max-width:780px; margin:0 auto; }
+.ad-card{ position:relative; aspect-ratio:1/1; border-radius:var(--raio); overflow:hidden; border:1px solid var(--borda); box-shadow:var(--sombra-sm); margin:0; }
+.ad-card-depois{ border-color:var(--borda-ouro); box-shadow:0 18px 40px rgba(214,178,94,.16); }
+.ad-foto{ position:absolute; inset:0; background-size:cover; background-repeat:no-repeat; }
+.ad-foto-antes{ background-image:url('assets/sorriso-antes.jpg'); background-position:center 56%; background-size:150%; }
+.ad-foto-depois{ background-image:url('assets/sorriso-2.jpg'); background-position:center 45%; background-size:235%; }
+.ad-seta{ display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--painel); border:1px solid var(--borda-ouro); }
+.ad-seta .ico{ width:22px; height:22px; color:var(--ouro); }
+@media (max-width:560px){ .ad-dupla{ grid-template-columns:1fr; } .ad-seta{ transform:rotate(90deg); justify-self:center; } }
 
 /* responsivo dos novos blocos */
 @media (max-width:960px){ .dente-palco{ width:min(330px, 74vw); } }
-@media (max-width:560px){ .ad-comp{ aspect-ratio:4/3; } .dente-chip{ left:0; padding:.55rem .8rem; } }
+@media (max-width:560px){ .dente-chip{ left:0; padding:.55rem .8rem; } }
 
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
@@ -652,13 +648,13 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 <section class="sec sobre" id="sobre">
   <div class="container">
     <div class="sobre-foto" data-reveal>
-      <div class="ph"><svg class="ph-ico"><use href="#i-pessoa"/></svg><small>Foto do<br>Dr. Eduardo Marques</small></div>
+      <div class="ph"><svg class="ph-ico"><use href="#i-pessoa"/></svg><small>Foto do(a)<br>Dr(a).</small></div>
       <div class="selo"><b>15+</b><span>anos de história</span></div>
     </div>
     <div data-reveal data-delay="1">
       <span class="eyebrow">A clínica</span>
-      <!-- TROQUE: nome do dentista -->
-      <h2>Dr. Eduardo Marques</h2>
+      <!-- TROQUE: título da seção, ou nome do(a) dentista (ex.: "Dr(a). Fulano de Tal") -->
+      <h2>Quem vai cuidar do seu sorriso</h2>
       <p>A <b>Marques Odontologia</b> nasceu para oferecer uma experiência diferente: a união entre <b>tecnologia de ponta</b> e um atendimento verdadeiramente exclusivo, com hora marcada e atenção individual a cada paciente.</p>
       <ul class="sobre-cred">
         <li><svg class="ico"><use href="#i-check"/></svg> Equipe especializada e em constante atualização</li>
@@ -729,19 +725,20 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
     <div class="sec-cab" data-reveal>
       <span class="eyebrow">Resultados</span>
       <h2>Antes &amp; depois</h2>
-      <p>Arraste e veja a transformação de um sorriso com lentes de contato dental e clareamento.</p>
+      <p>A transformação de um sorriso com lentes de contato dental e clareamento.</p>
     </div>
     <div class="ad-wrap" data-reveal>
-      <div class="ad-comp" id="adComp">
-        <div class="ad-layer ad-antes" role="img" aria-label="Sorriso antes — dentes amarelados"></div>
-        <span class="ad-vinheta"></span>
-        <div class="ad-layer ad-depois" role="img" aria-label="Sorriso depois — dentes brancos e alinhados"></div>
-        <span class="ad-tag antes">Antes</span>
-        <span class="ad-tag depois">Depois</span>
-        <span class="ad-divisor"></span>
-        <span class="ad-handle" id="adHandle" role="slider" aria-label="Comparar antes e depois" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="ico"><use href="#i-arrasta"/></svg></span>
+      <div class="ad-dupla">
+        <figure class="ad-card">
+          <div class="ad-foto ad-foto-antes" role="img" aria-label="Sorriso antes — dentes amarelados e tortos"></div>
+          <figcaption class="ad-tag antes">Antes</figcaption>
+        </figure>
+        <span class="ad-seta" aria-hidden="true"><svg class="ico"><use href="#i-seta"/></svg></span>
+        <figure class="ad-card ad-card-depois">
+          <div class="ad-foto ad-foto-depois" role="img" aria-label="Sorriso depois — dentes brancos e alinhados"></div>
+          <figcaption class="ad-tag depois">Depois</figcaption>
+        </figure>
       </div>
-      <p class="ad-dica">⟵ arraste para comparar ⟶</p>
     </div>
   </div>
 </section>
@@ -1017,29 +1014,6 @@ if (podeHover && !semMotion){
       if (curado){ rearmar(); } else { wrap.classList.add('tocado'); specks.forEach(function(s){ s.classList.add('limpo'); }); curar(); } }
   });
   reset.addEventListener('click', rearmar);
-})();
-
-/* Antes & Depois — slider */
-(function(){
-  var comp = document.getElementById('adComp');
-  if (!comp) return;
-  var handle = document.getElementById('adHandle');
-  var arrastando = false;
-  function setPos(x){
-    var r = comp.getBoundingClientRect();
-    var p = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
-    comp.style.setProperty('--pos', p + '%');
-    handle.setAttribute('aria-valuenow', Math.round(p));
-  }
-  comp.addEventListener('pointerdown', function(e){ arrastando = true; try{ comp.setPointerCapture(e.pointerId); }catch(_){} setPos(e.clientX); });
-  comp.addEventListener('pointermove', function(e){ if (arrastando) setPos(e.clientX); });
-  window.addEventListener('pointerup', function(){ arrastando = false; });
-  handle.addEventListener('keydown', function(e){
-    var cur = parseFloat(comp.style.getPropertyValue('--pos')) || 50;
-    if (e.key === 'ArrowLeft'){ e.preventDefault(); setPosPct(cur - 5); }
-    else if (e.key === 'ArrowRight'){ e.preventDefault(); setPosPct(cur + 5); }
-  });
-  function setPosPct(p){ p = Math.max(0, Math.min(100, p)); comp.style.setProperty('--pos', p + '%'); handle.setAttribute('aria-valuenow', Math.round(p)); }
 })();
 </script>
 </body>
