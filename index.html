@@ -491,6 +491,11 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .planos-tag{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--ouro-grad); color:#1A1206; font-size:.72rem; font-weight:700; padding:.25rem .8rem; border-radius:999px; }
 .planos-preco{ font-family:var(--serif); color:var(--titulo); font-size:1.4rem; }
 .planos-preco b{ font-size:2.2rem; color:var(--ouro); }
+.tour-thumb{ position:relative; margin-top:2rem; aspect-ratio:16/9; border-radius:var(--raio); border:1px solid var(--borda-ouro);
+  background:linear-gradient(135deg,#0b1320,#12203a); display:grid; place-items:center; cursor:pointer; overflow:hidden; }
+.tour-play{ width:72px; height:72px; border-radius:50%; background:var(--ouro-grad); display:grid; place-items:center; box-shadow:var(--sombra); }
+.tour-play .ico{ width:30px; height:30px; color:#1A1206; }
+.tour-legenda{ position:absolute; bottom:14px; left:16px; color:var(--titulo); font-family:var(--serif); }
 </style>
 </head>
 <body>
@@ -843,6 +848,11 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
       <div class="card amb-card" data-reveal><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto da recepção</small></div><div class="amb-corpo"><h3>Recepção acolhedora</h3><p>Um espaço pensado para você se sentir em casa desde a chegada.</p></div></div>
       <div class="card amb-card" data-reveal data-delay="1"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto do consultório</small></div><div class="amb-corpo"><h3>Consultórios modernos</h3><p>Equipamentos de última geração em ambientes reservados e higienizados.</p></div></div>
       <div class="card amb-card" data-reveal data-delay="2"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto da tecnologia</small></div><div class="amb-corpo"><h3>Tecnologia &amp; conforto</h3><p>Do raio-x digital aos detalhes de conforto, tudo para o seu bem-estar.</p></div></div>
+    </div>
+    <!-- TROQUE: vídeo do tour (trocar o div.tour-thumb por <video controls poster=...>) -->
+    <div class="tour-thumb" data-reveal role="button" tabindex="0" aria-label="Assistir ao tour da clínica">
+      <span class="tour-play"><svg class="ico"><use href="#i-play"/></svg></span>
+      <span class="tour-legenda">Tour pela clínica</span>
     </div>
   </div>
 </section>
