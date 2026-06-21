@@ -485,6 +485,12 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
   .btn::after{ display:none; }
   .dente-svg.curado .dente-gloss, .dente-svg.curado .faisca{ animation:none; }
 }
+.planos-lista{ list-style:none; padding:0; margin:.5rem 0 1rem; display:grid; gap:.5rem; }
+.planos-lista li{ color:var(--texto-suave); }
+.planos-destaque{ border-color:var(--borda-ouro); box-shadow:0 18px 40px rgba(214,178,94,.16); position:relative; text-align:center; }
+.planos-tag{ position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--ouro-grad); color:#1A1206; font-size:.72rem; font-weight:700; padding:.25rem .8rem; border-radius:999px; }
+.planos-preco{ font-family:var(--serif); color:var(--titulo); font-size:1.4rem; }
+.planos-preco b{ font-size:2.2rem; color:var(--ouro); }
 </style>
 </head>
 <body>
@@ -866,6 +872,37 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
         <span class="estrelas"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span>
         <p>Outro nível de atendimento. Hora marcada respeitada, tudo limpo e organizado. Recomendo demais.</p>
         <div class="dep-pessoa"><span class="avatar">PL</span><span><b>Patrícia Lima</b><span>Harmonização orofacial</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANOS / CONVÊNIOS / PAGAMENTO ============ -->
+<section class="sec alt" id="planos">
+  <div class="container">
+    <div class="sec-cab" data-reveal>
+      <span class="eyebrow">Acesso facilitado</span>
+      <h2>Planos, convênios e pagamento</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card" data-reveal>
+        <div class="bolha"><svg class="ico"><use href="#i-escudo"/></svg></div>
+        <h3>Convênios</h3>
+        <!-- TROQUE: convênios aceitos -->
+        <ul class="planos-lista"><li>Amil Dental</li><li>SulAmérica</li><li>Bradesco Dental</li><li>Particular</li></ul>
+      </div>
+      <div class="card planos-destaque" data-reveal data-delay="1">
+        <span class="planos-tag">Mais popular</span>
+        <h3>Plano Sorriso</h3>
+        <!-- TROQUE: preço e benefícios -->
+        <p class="planos-preco">R$ <b>149</b>/mês</p>
+        <ul class="planos-lista"><li>Avaliações ilimitadas</li><li>Limpeza 2x/ano</li><li>10% em tratamentos</li></ul>
+        <a class="btn" href="#agendamento">Quero esse plano</a>
+      </div>
+      <div class="card" data-reveal data-delay="2">
+        <div class="bolha"><svg class="ico"><use href="#i-cartao"/></svg></div>
+        <h3>Formas de pagamento</h3>
+        <ul class="planos-lista"><li>Pix e dinheiro</li><li>Cartão em até 12x</li><li>Boleto / carnê próprio</li></ul>
       </div>
     </div>
   </div>
