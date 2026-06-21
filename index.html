@@ -514,6 +514,16 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .agenda-form input, .agenda-form select{ padding:.9rem 1rem; border-radius:var(--raio); border:1px solid var(--borda); background:var(--painel); color:var(--titulo); font:inherit; }
 .agenda-form input::placeholder{ color:var(--texto-suave); }
 .agenda-form .btn{ justify-content:center; }
+.quiz-card{ max-width:640px; margin:0 auto; background:var(--painel); border:1px solid var(--borda-ouro); border-radius:var(--raio); padding:1.5rem; }
+.quiz-prog{ height:6px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; margin-bottom:1.25rem; }
+.quiz-prog-bar{ display:block; height:100%; width:0; background:var(--ouro-grad); transition:width .3s ease; }
+.quiz-pergunta{ font-family:var(--serif); color:var(--titulo); font-size:1.25rem; margin-bottom:1rem; }
+.quiz-ops{ display:grid; gap:.6rem; }
+.quiz-op{ text-align:left; padding:.9rem 1rem; border-radius:var(--raio); border:1px solid var(--borda); background:transparent; color:var(--titulo); font:inherit; cursor:pointer; transition:border-color .2s, background .2s; }
+.quiz-op:hover, .quiz-op:focus{ border-color:var(--borda-ouro); background:rgba(214,178,94,.08); }
+.quiz-final{ text-align:center; }
+.quiz-final h3{ color:var(--ouro); font-size:1.5rem; }
+.quiz-refazer{ background:none; border:none; color:var(--texto-suave); cursor:pointer; margin-top:1rem; text-decoration:underline; font:inherit; }
 </style>
 </head>
 <body>
@@ -788,6 +798,17 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
         <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-dente"/></svg></div></div>
         <div class="card-corpo"><h3>Clínica Geral &amp; Prevenção</h3><p>Limpeza, restaurações e acompanhamento para manter o seu sorriso sempre saudável.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="sec quiz-sec" id="quiz">
+  <div class="container">
+    <div class="sec-cab" data-reveal><span class="eyebrow">Descubra</span><h2>Qual tratamento é pra você?</h2><p>3 perguntas rápidas.</p></div>
+    <div class="quiz-card" id="quizCard" data-reveal>
+      <div class="quiz-prog"><span class="quiz-prog-bar" id="quizBar"></span></div>
+      <div id="quizPalco"></div>
     </div>
   </div>
 </section>
@@ -1230,6 +1251,51 @@ function montarWhatsApp(num, msg){ return 'https://wa.me/' + num + '?text=' + en
       + (trat ? ' de ' + trat : '') + (hora ? ' (prefiro ' + hora.toLowerCase() + ')' : '') + '.';
     window.open(montarWhatsApp(NUM, msg), '_blank');
   });
+})();
+
+/* Quiz "Qual tratamento é pra você?" */
+(function(){
+  var palco = document.getElementById('quizPalco');
+  if (!palco) return;
+  var bar = document.getElementById('quizBar');
+  var NUM = '5592999999999'; /* TROQUE */
+  var perguntas = [
+    { q:'O que mais te incomoda?', ops:[
+      ['Dentes amarelados','Clareamento'], ['Dentes tortos / desalinhados','Ortodontia / Alinhadores'],
+      ['Falta de um ou mais dentes','Implantes'], ['Quero um sorriso de cinema','Lentes de Contato Dental'],
+      ['Dor / sensibilidade / outro','Avaliação clínica geral'] ] },
+    { q:'Há quanto tempo você pensa nisso?', ops:[['Recente',null],['Faz um tempo',null],['Já passou da hora 😅',null]] },
+    { q:'Prefere atendimento:', ops:[['Manhã','Manhã'],['Tarde','Tarde'],['Noite','Noite']] }
+  ];
+  var passo = 0, tratamento = 'Avaliação clínica geral', periodo = null;
+
+  function render(){
+    bar.style.width = (passo / perguntas.length * 100) + '%';
+    if (passo >= perguntas.length){ return final(); }
+    var p = perguntas[passo];
+    var html = '<p class="quiz-pergunta">' + p.q + '</p><div class="quiz-ops">';
+    p.ops.forEach(function(o, i){ html += '<button type="button" class="quiz-op" data-i="' + i + '">' + o[0] + '</button>'; });
+    html += '</div>';
+    palco.innerHTML = html;
+    Array.prototype.forEach.call(palco.querySelectorAll('.quiz-op'), function(b){
+      b.addEventListener('click', function(){
+        var o = p.ops[+b.getAttribute('data-i')];
+        if (passo === 0) tratamento = o[1];
+        if (passo === 2) periodo = o[1];
+        passo++; render();
+      });
+    });
+  }
+  function final(){
+    bar.style.width = '100%';
+    var msg = 'Olá! Fiz o quiz e tenho interesse em ' + tratamento + (periodo ? ', prefiro ' + periodo.toLowerCase() : '') + '.';
+    palco.innerHTML = '<div class="quiz-final"><h3>' + tratamento + '</h3>'
+      + '<p>É o que mais combina com o que você respondeu. Vamos cuidar disso?</p>'
+      + '<a class="btn" target="_blank" rel="noopener" href="' + montarWhatsApp(NUM, msg) + '"><svg class="ico"><use href="#i-whats"/></svg> Falar no WhatsApp</a>'
+      + '<br><button type="button" class="quiz-refazer" id="quizRefazer">Refazer</button></div>';
+    palco.querySelector('#quizRefazer').addEventListener('click', function(){ passo=0; tratamento='Avaliação clínica geral'; periodo=null; render(); });
+  }
+  render();
 })();
 </script>
 </body>
