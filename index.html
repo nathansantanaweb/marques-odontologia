@@ -1088,6 +1088,37 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 </a>
 
 <script>
+/* ===== Personalização por link (?nome=&cidade=&whats=) — cai no demo padrão sem parâmetro ===== */
+(function(){
+  var p; try{ p = new URLSearchParams(location.search); }catch(e){ window.WHATS = '5592999999999'; return; }
+  var clean = function(s){ return (s || '').replace(/[<>]/g, '').trim(); };
+  var nome = clean(p.get('nome')), cidade = clean(p.get('cidade')), whats = (p.get('whats') || '').replace(/\D/g, '');
+  window.WHATS = whats || '5592999999999';
+  if (nome){
+    document.querySelectorAll('.nome').forEach(function(el){
+      var sub = el.querySelector('span'); var subHtml = sub ? sub.outerHTML : '';
+      var parts = nome.split(/\s+/); var last = parts.pop(); var first = parts.join(' ');
+      el.innerHTML = (first ? first + ' ' : '') + '<b>' + last + '</b>' + subHtml;
+    });
+  }
+  function repl(find, val){
+    if (!val) return;
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n, list = [];
+    while (n = w.nextNode()){ if (n.nodeValue.indexOf(find) >= 0) list.push(n); }
+    list.forEach(function(t){ t.nodeValue = t.nodeValue.split(find).join(val); });
+  }
+  repl('Marques Odontologia', nome);
+  repl('Manaus/AM', cidade);
+  repl('Manaus', cidade);
+  if (nome || cidade){ document.title = (nome || 'Marques Odontologia') + ' — Odontologia de alto padrão' + (cidade ? ' em ' + cidade : ''); }
+  if (whats){
+    document.querySelectorAll('a[href*="wa.me/5592999999999"]').forEach(function(a){ a.setAttribute('href', a.getAttribute('href').replace('5592999999999', whats)); });
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.setAttribute('href', 'tel:+' + whats); });
+    var m = whats.match(/^55(\d{2})(\d{4,5})(\d{4})$/); var disp = m ? '(' + m[1] + ') ' + m[2] + '-' + m[3] : whats;
+    repl('(92) 99999-9999', disp);
+  }
+})();
+
 /* Menu hambúrguer */
 var burger = document.getElementById('burger'), menu = document.getElementById('menu');
 burger.addEventListener('click', function(){
@@ -1241,7 +1272,7 @@ function montarWhatsApp(num, msg){ return 'https://wa.me/' + num + '?text=' + en
 (function(){
   var f = document.getElementById('agendaForm');
   if (!f) return;
-  var NUM = '5592999999999'; /* TROQUE: WhatsApp da clinica */
+  var NUM = window.WHATS || '5592999999999'; /* TROQUE: WhatsApp da clinica */
   f.addEventListener('submit', function(e){
     e.preventDefault();
     var nome = document.getElementById('agNome').value.trim();
@@ -1259,7 +1290,7 @@ function montarWhatsApp(num, msg){ return 'https://wa.me/' + num + '?text=' + en
   var palco = document.getElementById('quizPalco');
   if (!palco) return;
   var bar = document.getElementById('quizBar');
-  var NUM = '5592999999999'; /* TROQUE */
+  var NUM = window.WHATS || '5592999999999'; /* TROQUE */
   var perguntas = [
     { q:'O que mais te incomoda?', ops:[
       ['Dentes amarelados','Clareamento'], ['Dentes tortos / desalinhados','Ortodontia / Alinhadores'],
