@@ -257,6 +257,13 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .dep-pessoa b{ color:var(--titulo); display:block; font-size:.96rem; font-family:var(--sans); }
 .dep-pessoa span{ font-size:.82rem; color:var(--texto-suave); }
 
+.review-nota{ display:flex; align-items:center; justify-content:center; gap:.5rem; }
+.review-nota b{ color:var(--titulo); font-size:1.2rem; }
+.review-estrelas{ display:inline-flex; color:var(--ouro); }
+.review-estrelas .ico{ width:16px; height:16px; }
+.review-top{ display:flex; gap:.75rem; align-items:center; margin-bottom:.75rem; }
+.review-avatar{ width:42px; height:42px; border-radius:50%; display:grid; place-items:center; font-weight:700; color:#1A1206; background:var(--ouro-grad); }
+
 .equipe-card{ text-align:center; }
 .equipe-foto{ aspect-ratio:1/1; margin-bottom:1rem; }
 .equipe-cargo{ color:var(--ouro); font-size:.9rem; margin-top:.25rem; }
@@ -792,6 +799,27 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
           <figcaption class="ad-tag depois">Depois</figcaption>
         </figure>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVALIAÇÕES GOOGLE ============ -->
+<section class="sec" id="avaliacoes">
+  <div class="container">
+    <div class="sec-cab" data-reveal>
+      <span class="eyebrow">Reputação</span>
+      <h2>O que dizem no Google</h2>
+      <p class="review-nota"><svg class="ico"><use href="#i-google"/></svg> <b>4,9</b> <span class="review-estrelas"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span> · +200 avaliações</p>
+    </div>
+    <div class="grid-3">
+      <!-- TROQUE: avaliações reais -->
+      <div class="card review-card" data-reveal><div class="review-top"><span class="review-avatar">M</span><div><b>Marina S.</b><span class="review-estrelas"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span></div></div><p>"Atendimento impecável e resultado lindo. Recomendo demais!"</p></div>
+      <div class="card review-card" data-reveal data-delay="1"><div class="review-top"><span class="review-avatar">R</span><div><b>Rafael T.</b><span class="review-estrelas"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span></div></div><p>"Equipe super atenciosa, estrutura de primeira. Voltarei sempre."</p></div>
+      <div class="card review-card" data-reveal data-delay="2"><div class="review-top"><span class="review-avatar">C</span><div><b>Carla M.</b><span class="review-estrelas"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span></div></div><p>"Fiz lentes e amei. Profissionais excelentes."</p></div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem" data-reveal>
+      <!-- TROQUE: link do perfil no Google -->
+      <a class="btn btn--linha" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-google"/></svg> Ver no Google</a>
     </div>
   </div>
 </section>
