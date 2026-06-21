@@ -510,6 +510,10 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .promo-txt .ico{ width:28px; height:28px; }
 .promo .btn{ background:#1A1206; color:var(--ouro); }
 @media (max-width:560px){ .promo-inner{ justify-content:center; text-align:center; } }
+.agenda-form{ display:grid; gap:.75rem; max-width:520px; margin:0 auto; }
+.agenda-form input, .agenda-form select{ padding:.9rem 1rem; border-radius:var(--raio); border:1px solid var(--borda); background:var(--painel); color:var(--titulo); font:inherit; }
+.agenda-form input::placeholder{ color:var(--texto-suave); }
+.agenda-form .btn{ justify-content:center; }
 </style>
 </head>
 <body>
@@ -981,6 +985,23 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
   </div>
 </section>
 
+<!-- ============ AGENDAMENTO ============ -->
+<section class="sec alt" id="agendamento">
+  <div class="container">
+    <div class="sec-cab" data-reveal><span class="eyebrow">Agende</span><h2>Marque sua avaliação</h2><p>Resposta rápida pelo WhatsApp.</p></div>
+    <form class="agenda-form" id="agendaForm" data-reveal novalidate>
+      <input type="text" id="agNome" placeholder="Seu nome" required>
+      <select id="agTrat">
+        <option value="">Tratamento de interesse</option>
+        <option>Avaliação geral</option><option>Clareamento</option><option>Lentes de Contato Dental</option>
+        <option>Implantes</option><option>Ortodontia / Alinhadores</option><option>Harmonização orofacial</option>
+      </select>
+      <select id="agHora"><option value="">Melhor horário</option><option>Manhã</option><option>Tarde</option><option>Noite</option></select>
+      <button class="btn" type="submit"><svg class="ico"><use href="#i-whats"/></svg> Agendar pelo WhatsApp</button>
+    </form>
+  </div>
+</section>
+
 <!-- ============ CTA FINAL ============ -->
 <section class="cta">
   <div class="container">
@@ -1189,6 +1210,26 @@ if (podeHover && !semMotion){
       if (curado){ rearmar(); } else { wrap.classList.add('tocado'); specks.forEach(function(s){ s.classList.add('limpo'); }); curar(); } }
   });
   reset.addEventListener('click', rearmar);
+})();
+
+/* WhatsApp helper (compartilhado com o quiz) */
+function montarWhatsApp(num, msg){ return 'https://wa.me/' + num + '?text=' + encodeURIComponent(msg); }
+
+/* Agendamento -> WhatsApp */
+(function(){
+  var f = document.getElementById('agendaForm');
+  if (!f) return;
+  var NUM = '5592999999999'; /* TROQUE: WhatsApp da clinica */
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome = document.getElementById('agNome').value.trim();
+    if (!nome){ document.getElementById('agNome').focus(); return; }
+    var trat = document.getElementById('agTrat').value;
+    var hora = document.getElementById('agHora').value;
+    var msg = 'Olá! Sou ' + nome + ' e gostaria de agendar uma avaliação'
+      + (trat ? ' de ' + trat : '') + (hora ? ' (prefiro ' + hora.toLowerCase() + ')' : '') + '.';
+    window.open(montarWhatsApp(NUM, msg), '_blank');
+  });
 })();
 </script>
 </body>
