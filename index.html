@@ -573,6 +573,8 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .quiz-final{ text-align:center; }
 .quiz-final h3{ color:var(--ouro); font-size:1.5rem; }
 .quiz-refazer{ background:none; border:none; color:var(--texto-suave); cursor:pointer; margin-top:1rem; text-decoration:underline; font:inherit; }
+.trat-img{ width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:var(--raio) var(--raio) 0 0; display:block; }
+.amb-img{ width:100%; aspect-ratio:16/11; object-fit:cover; display:block; }
 </style>
 </head>
 <body>
@@ -825,27 +827,27 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
     </div>
     <div class="grid-3">
       <article class="card trat-card" data-reveal>
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-implante"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-implante.jpg" alt="Implantes dentários" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-implante"/></svg></div></div>
         <div class="card-corpo"><h3>Implantes Dentários</h3><p>Reposição de dentes com naturalidade, devolvendo função, estética e autoestima.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
       <article class="card trat-card" data-reveal data-delay="1">
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-brilho"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-lentes.jpg" alt="Lentes de contato dental" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-brilho"/></svg></div></div>
         <div class="card-corpo"><h3>Lentes de Contato Dental</h3><p>Um sorriso de cinema com lâminas ultrafinas, alinhadas e perfeitamente naturais.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
       <article class="card trat-card" data-reveal data-delay="2">
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-aparelho"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-ortodontia.jpg" alt="Ortodontia e alinhadores" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-aparelho"/></svg></div></div>
         <div class="card-corpo"><h3>Ortodontia &amp; Alinhadores</h3><p>Aparelhos estéticos e alinhadores invisíveis para corrigir o sorriso com discrição.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
       <article class="card trat-card" data-reveal>
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-star"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-clareamento.jpg" alt="Clareamento estético" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-star"/></svg></div></div>
         <div class="card-corpo"><h3>Clareamento Estético</h3><p>Dentes mais brancos com segurança e resultado uniforme, em sessões rápidas.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
       <article class="card trat-card" data-reveal data-delay="1">
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-coracao"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-harmonizacao.jpg" alt="Harmonização orofacial" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-coracao"/></svg></div></div>
         <div class="card-corpo"><h3>Harmonização Orofacial</h3><p>Procedimentos faciais que valorizam a beleza natural e a harmonia do seu rosto.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
       <article class="card trat-card" data-reveal data-delay="2">
-        <div class="card-topo"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Imagem</small></div><div class="card-ico"><svg class="ico"><use href="#i-dente"/></svg></div></div>
+        <div class="card-topo"><img class="trat-img" src="assets/trat-geral.jpg" alt="Clínica geral e prevenção" loading="lazy"><div class="card-ico"><svg class="ico"><use href="#i-dente"/></svg></div></div>
         <div class="card-corpo"><h3>Clínica Geral &amp; Prevenção</h3><p>Limpeza, restaurações e acompanhamento para manter o seu sorriso sempre saudável.</p><a class="mais" href="#contato">Saiba mais <svg class="ico"><use href="#i-seta"/></svg></a></div>
       </article>
     </div>
@@ -934,9 +936,9 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
     </div>
     <!-- TROQUE cada .ph por <img src="..."> com fotos reais do espaço -->
     <div class="grid-3">
-      <div class="card amb-card" data-reveal><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto da recepção</small></div><div class="amb-corpo"><h3>Recepção acolhedora</h3><p>Um espaço pensado para você se sentir em casa desde a chegada.</p></div></div>
-      <div class="card amb-card" data-reveal data-delay="1"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto do consultório</small></div><div class="amb-corpo"><h3>Consultórios modernos</h3><p>Equipamentos de última geração em ambientes reservados e higienizados.</p></div></div>
-      <div class="card amb-card" data-reveal data-delay="2"><div class="ph"><svg class="ph-ico"><use href="#i-camera"/></svg><small>Foto da tecnologia</small></div><div class="amb-corpo"><h3>Tecnologia &amp; conforto</h3><p>Do raio-x digital aos detalhes de conforto, tudo para o seu bem-estar.</p></div></div>
+      <div class="card amb-card" data-reveal><img class="amb-img" src="assets/amb-recepcao.jpg" alt="Recepção da clínica" loading="lazy"><div class="amb-corpo"><h3>Recepção acolhedora</h3><p>Um espaço pensado para você se sentir em casa desde a chegada.</p></div></div>
+      <div class="card amb-card" data-reveal data-delay="1"><img class="amb-img" src="assets/amb-consultorio.jpg" alt="Consultório moderno" loading="lazy"><div class="amb-corpo"><h3>Consultórios modernos</h3><p>Equipamentos de última geração em ambientes reservados e higienizados.</p></div></div>
+      <div class="card amb-card" data-reveal data-delay="2"><img class="amb-img" src="assets/amb-tecnologia.jpg" alt="Tecnologia da clínica" loading="lazy"><div class="amb-corpo"><h3>Tecnologia &amp; conforto</h3><p>Do raio-x digital aos detalhes de conforto, tudo para o seu bem-estar.</p></div></div>
     </div>
     <!-- TROQUE: vídeo do tour (trocar o div.tour-thumb por <video controls poster=...>) -->
     <div class="tour-thumb" data-reveal role="button" tabindex="0" aria-label="Assistir ao tour da clínica">
