@@ -8,6 +8,30 @@
 <title>Marques Odontologia — Odontologia de Alto Padrão em Manaus</title>
 <meta name="description" content="Clínica odontológica de alto padrão em Manaus: implantes, lentes de contato dental, ortodontia e harmonização orofacial com atendimento exclusivo.">
 
+<!-- TROQUE: dados estruturados (SEO/Google) — ajuste nome, endereço, telefone e horários do cliente -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Marques Odontologia",
+  "description": "Clínica odontológica de alto padrão em Manaus: implantes, lentes de contato dental, ortodontia e harmonização orofacial.",
+  "telephone": "+5592999999999",
+  "priceRange": "$$",
+  "areaServed": "Manaus, AM",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Brasil, 1500, Centro",
+    "addressLocality": "Manaus",
+    "addressRegion": "AM",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "13:00" }
+  ]
+}
+</script>
+
 <!-- ===================================================================
      COMO PERSONALIZAR (resumo)
      1. CORES:    variáveis em :root logo abaixo (--fundo, --ouro etc.)
@@ -502,6 +526,12 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
 .local-horarios{ width:100%; margin:1rem 0; border-collapse:collapse; }
 .local-horarios td{ padding:.5rem 0; border-bottom:1px solid var(--borda); color:var(--texto-suave); }
 .local-horarios td:last-child{ text-align:right; color:var(--titulo); }
+.aberto-badge{ display:inline-flex; align-items:center; gap:.45rem; padding:.28rem .75rem; border-radius:999px; font-size:.8rem; font-weight:600; margin:.4rem 0; }
+.aberto-badge::before{ content:""; width:8px; height:8px; border-radius:50%; }
+.aberto-badge.on{ background:rgba(63,207,117,.14); color:#7ee0a0; }
+.aberto-badge.on::before{ background:#3fcf75; box-shadow:0 0 8px #3fcf75; }
+.aberto-badge.off{ background:rgba(255,255,255,.06); color:var(--texto-suave); }
+.aberto-badge.off::before{ background:#8893a7; }
 .local-acoes{ display:flex; gap:.75rem; flex-wrap:wrap; }
 @media (max-width:768px){ .local-grid{ grid-template-columns:1fr; } }
 .promo{ background:var(--ouro-grad); padding:1.5rem 0; }
@@ -981,6 +1011,7 @@ h1,h2,h3,h4{ font-family:var(--serif); color:var(--titulo); line-height:1.18; fo
     <div data-reveal data-delay="1">
       <span class="eyebrow">Onde estamos</span>
       <h2>Fácil de chegar</h2>
+      <span class="aberto-badge" id="abertoBadge" aria-live="polite"></span>
       <!-- TROQUE: endereço e horários -->
       <p class="local-end"><svg class="ico"><use href="#i-mapa"/></svg> Av. Brasil, 1500 — Centro, Manaus/AM</p>
       <table class="local-horarios">
@@ -1328,6 +1359,25 @@ function montarWhatsApp(num, msg){ return 'https://wa.me/' + num + '?text=' + en
     palco.querySelector('#quizRefazer').addEventListener('click', function(){ passo=0; tratamento='Avaliação clínica geral'; periodo=null; render(); });
   }
   render();
+})();
+
+/* Selo "Aberto agora" — calcula pelo horario local (TROQUE: ajuste os horarios do cliente) */
+(function(){
+  var el = document.getElementById('abertoBadge');
+  if (!el) return;
+  function estaAberto(d){
+    var dia = d.getDay(), min = d.getHours() * 60 + d.getMinutes();
+    if (dia >= 1 && dia <= 5) return min >= 480 && min < 1140; // Seg-Sex 08:00-19:00
+    if (dia === 6) return min >= 480 && min < 780;             // Sab 08:00-13:00
+    return false;                                              // Dom fechado
+  }
+  function render(){
+    var aberto = estaAberto(new Date());
+    el.className = 'aberto-badge ' + (aberto ? 'on' : 'off');
+    el.textContent = aberto ? 'Aberto agora' : 'Fechado no momento';
+  }
+  render();
+  setInterval(render, 60000);
 })();
 </script>
 </body>
